@@ -1,0 +1,17 @@
+-- steps to install pre-commit-script -----
+python should be installed where the bitbucket installed.
+requests python should be installed in the python location.
+
+-- steps to build docker image ------ 
+mvn clean install
+docker build . -t docker.cambio.se/cambio-infrastructure/commit-keywords-manager:1.0
+
+-- steps to push images --------
+docker login https://docker.cambio.se
+docker push docker.cambio.se/cambio-infrastructure/commit-keywords-manager:1.0
+
+--- dummy commit ---
+echo test > $(get-date -f MM-dd-yyyy_HH_mm_ss) | git add -A | git commit -m "(CM5) test" | git push
+
+--- test hook create
+cd hooks/pre-receive.d/ | touch hook.py | chmod 777 hook.py | vi hook.py
