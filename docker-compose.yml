@@ -62,4 +62,4 @@ services:
 #    - keywords-nt
     
 networks:
-  keywords-nt: 
+  manpower-nt:

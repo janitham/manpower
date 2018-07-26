@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://${DB_SERVER:localhost}:${DB_PORT:3306}/${DB_NAME:cambio-keywords-db}?useSSL=false
+    url: jdbc:mysql://${DB_SERVER:localhost}:${DB_PORT:3306}/${DB_NAME:manpower-inc-db}?useSSL=false
     username: ${DB_USER:testUser}
     password: ${DB_PASSWORD:1234}
 server:

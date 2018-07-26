@@ -1,4 +1,4 @@
-package com.mkyong;
+package inc.manpower.controller;
 
 import java.util.Map;
 
