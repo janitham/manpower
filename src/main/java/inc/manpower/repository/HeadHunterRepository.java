@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface HeadHunterRepository extends CrudRepository<HeadHunter, Integer> {
+public interface HeadHunterRepository extends CrudRepository<HeadHunter, Long> {
 }

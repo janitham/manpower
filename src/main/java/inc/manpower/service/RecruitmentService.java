@@ -5,5 +5,5 @@ import inc.manpower.domain.Employee;
 import java.util.List;
 
 public interface RecruitmentService {
-    List<Employee> findHuntersRecruitmentsForMonth(Long huntersId);
+    List<Employee> findHuntersRecruitmentForMonth(Long huntersId);
 }
