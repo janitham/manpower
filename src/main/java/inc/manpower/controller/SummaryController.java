@@ -1,15 +1,11 @@
 package inc.manpower.controller;
 
-import inc.manpower.domain.Employee;
-import inc.manpower.domain.HeadHunter;
 import inc.manpower.domain.HuntersSummary;
-import inc.manpower.service.HeadHuntersService;
 import inc.manpower.service.PaymentsService;
 import inc.manpower.service.RecruitmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 

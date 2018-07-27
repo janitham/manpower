@@ -36,17 +36,10 @@ public class HomeController {
                                         @RequestParam("page") Optional<Integer> page) {
         ModelAndView modelAndView = new ModelAndView("home");
 
-        //List<HeadHunter> headHunters = headHuntersService.findAll();
-        // Evaluate page size. If requested parameter is null, return initial
-        // page size
         int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
-        // Evaluate page. If requested parameter is null or less than 0 (to
-        // prevent exception), return initial size. Otherwise, return value of
-        // param. decreased by 1.
         int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
 
         Page<HeadHunter> headHunters = headHuntersService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
-
         Pager pager = new Pager(headHunters.getTotalPages(), headHunters.getNumber(), BUTTONS_TO_SHOW);
 
         modelAndView.addObject("hunters", headHunters);

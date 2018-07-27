@@ -1,4 +1,4 @@
-package inc.manpower.service;
+package inc.manpower.service.impl;
 
 import com.google.common.collect.Lists;
 import inc.manpower.domain.EmployeeType;
@@ -7,6 +7,7 @@ import inc.manpower.domain.RecruitmentOverview;
 import inc.manpower.repository.EmployeeTypeRepository;
 import inc.manpower.repository.HeadHunterRepository;
 import inc.manpower.repository.RecruitmentOverviewRepository;
+import inc.manpower.service.PaymentsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +19,13 @@ import java.util.List;
 @Service
 public class PaymentsServiceImpl implements PaymentsService {
 
+    private final Logger log = LoggerFactory.getLogger(getClass());
     @Autowired
     private HeadHunterRepository headHunterRepository;
-
     @Autowired
     private EmployeeTypeRepository employeeTypeRepository;
-
     @Autowired
     private RecruitmentOverviewRepository recruitmentOverviewRepository;
-
-    private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Override
     public Double calculatePaymentsForHunterForMonth(Long huntersId) {

@@ -3,7 +3,9 @@ package inc.manpower.domain;
 import org.hibernate.annotations.Immutable;
 import org.hibernate.annotations.Subselect;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
