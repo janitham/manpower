@@ -1,13 +1,12 @@
 package inc.manpower.repository;
 
 import inc.manpower.domain.Employee;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import javax.transaction.Transactional;
 
 @Repository
-public interface EmployeeRepository extends CrudRepository<Employee, Long> {
-
-    List<Employee> findByHeadHunterId(Long headHunterId);
+@Transactional
+public interface EmployeeRepository extends PagingAndSortingRepository<Employee, Long> {
 }

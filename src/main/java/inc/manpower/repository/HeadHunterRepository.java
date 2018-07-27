@@ -1,9 +1,12 @@
 package inc.manpower.repository;
 
 import inc.manpower.domain.HeadHunter;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
+
 @Repository
-public interface HeadHunterRepository extends CrudRepository<HeadHunter, Long> {
+@Transactional
+public interface HeadHunterRepository extends PagingAndSortingRepository<HeadHunter, Long> {
 }
