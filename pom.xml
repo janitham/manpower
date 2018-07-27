@@ -17,6 +17,12 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
+	<scm>
+		<connection>scm:git:file:///C:/Workspaces/keywords-validation/commit-keywords-manager</connection>
+		<developerConnection>scm:git:file:///C:/Workspaces/keywords-validation/commit-keywords-manager</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
 	<properties>
 		<java.version>1.8</java.version>
 		<docker.plugin.version>0.4.13</docker.plugin.version>
@@ -132,8 +138,18 @@
 				<configuration>
 					<imageName>${docker.image.prefix}/${project.artifactId}:${project.version}</imageName>
 					<dockerDirectory>${project.basedir}</dockerDirectory>
-					<serverId>manpower-inc</serverId>
-					<registryUrl>https://docker.manpower.inc/</registryUrl>
+					<serverId>man-docker</serverId>
+					<registryUrl>https://docker.cambio.se/</registryUrl>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<branchName>manpower</branchName>
+					<pushChanges>false</pushChanges>
+					<localCheckout>true</localCheckout>
 				</configuration>
 			</plugin>
 		</plugins>
