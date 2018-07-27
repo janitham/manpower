@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <title>Head Hunter</title>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">HOME</a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <h1>Head Hunters</h1>
+    </div>
+    <div class="row">
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>SSN</th>
+                <th>Link</th>
+            </tr>
+            <tr th:each="hunter : ${hunters}">
+                <td th:text="${hunter.id}"></td>
+                <td th:text="${hunter.firstName}"></td>
+                <td th:text="${hunter.lastName}"></td>
+                <td th:text="${hunter.ssnId}"></td>
+                <td><a th:href="@{'/summary?hunterId='+${hunter.id}}">show</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</div>
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/app.js}"></script>
+</body>
+</html>

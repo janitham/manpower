@@ -29,7 +29,7 @@ from employee em;
 
 create or replace view hunters_summary as 
 select 
-em.id as emp_id, em.first_name as emp_fname, em.last_name as emp_last_name, em.ssn_id as emp_ssn_id,
+em.id as emp_id, em.first_name as emp_fname, em.last_name as emp_last_name, em.ssn_id as emp_ssn_id, em.recruited_date as emp_recruited_date,
 hh.id as hh_id, hh.first_name as hh_fname, hh.last_name as hh_lname, hh.ssn_id as hh_ssn_id,
 et.id as type_id, et.name as em_type, et.amount as em_value		 
 from employee em 

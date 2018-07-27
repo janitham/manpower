@@ -1,9 +1,9 @@
 package inc.manpower.service;
 
-import inc.manpower.domain.Employee;
+import inc.manpower.domain.HuntersSummary;
 
 import java.util.List;
 
 public interface RecruitmentService {
-    List<Employee> findHuntersRecruitmentForMonth(Long huntersId);
+    List<HuntersSummary> findHuntersRecruitmentForMonth(Long huntersId);
 }

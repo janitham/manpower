@@ -4,19 +4,20 @@ import org.hibernate.annotations.Immutable;
 import org.hibernate.annotations.Subselect;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Immutable
 @Table(name = "`recruitment_overview`")
 @Subselect("select uuid() as id, ov.* from recruitment_overview ov")
-public class RecruitmentOverview {
+public class RecruitmentOverview implements Serializable {
 
     @Id
     private String id;
-    private Long hunter_id;
-    private Long type_id;
-    private Long employees_count;
-    private Long groups_count;
+    private Long hunterId;
+    private Long typeId;
+    private Long employeesCount;
+    private Long groupsCount;
 
     public String getId() {
         return id;
@@ -26,35 +27,35 @@ public class RecruitmentOverview {
         this.id = id;
     }
 
-    public Long getHunter_id() {
-        return hunter_id;
+    public Long getHunterId() {
+        return hunterId;
     }
 
-    public void setHunter_id(Long hunter_id) {
-        this.hunter_id = hunter_id;
+    public void setHunterId(Long hunterId) {
+        this.hunterId = hunterId;
     }
 
-    public Long getType_id() {
-        return type_id;
+    public Long getTypeId() {
+        return typeId;
     }
 
-    public void setType_id(Long type_id) {
-        this.type_id = type_id;
+    public void setTypeId(Long typeId) {
+        this.typeId = typeId;
     }
 
-    public Long getEmployees_count() {
-        return employees_count;
+    public Long getEmployeesCount() {
+        return employeesCount;
     }
 
-    public void setEmployees_count(Long employees_count) {
-        this.employees_count = employees_count;
+    public void setEmployeesCount(Long employeesCount) {
+        this.employeesCount = employeesCount;
     }
 
-    public Long getGroups_count() {
-        return groups_count;
+    public Long getGroupsCount() {
+        return groupsCount;
     }
 
-    public void setGroups_count(Long groups_count) {
-        this.groups_count = groups_count;
+    public void setGroupsCount(Long groupsCount) {
+        this.groupsCount = groupsCount;
     }
 }
