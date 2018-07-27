@@ -12,6 +12,7 @@
 #####Monitoring: 
 1. ```docker-compose -f docker-compose-monitoring.yml up -d``` will create prometheus and grafana instances
 2. browse ```localhost:3000``` for find grafana ui
+3. use admin:admin then select the datasource as promethues.
 
 ### Kubernetes & JenkinsFile
 1. Sample jenkinsfile created to automate build and release pipeline.
