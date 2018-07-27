@@ -3,6 +3,7 @@ package inc.manpower.controller;
 import inc.manpower.domain.HeadHunter;
 import inc.manpower.domain.Pager;
 import inc.manpower.service.HeadHuntersService;
+import inc.manpower.service.impl.HeadHuntersServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,7 +21,7 @@ public class HomeController {
     private static final int INITIAL_PAGE = 0;
     private static final int INITIAL_PAGE_SIZE = 5;
     private static final int[] PAGE_SIZES = {5, 10, 20};
-
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(HeadHuntersServiceImpl.class);
     @Autowired
     private HeadHuntersService headHuntersService;
 
@@ -38,6 +39,8 @@ public class HomeController {
 
         int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
         int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+
+        logger.debug("Loading all the information of Head Hunters using evalPageSize=" + evalPageSize + "and evalPage=" + evalPage);
 
         Page<HeadHunter> headHunters = headHuntersService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
         Pager pager = new Pager(headHunters.getTotalPages(), headHunters.getNumber(), BUTTONS_TO_SHOW);

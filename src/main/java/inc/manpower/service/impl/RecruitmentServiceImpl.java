@@ -5,8 +5,6 @@ import inc.manpower.domain.HuntersSummary;
 import inc.manpower.repository.HeadHunterRepository;
 import inc.manpower.repository.HuntersSummaryRepository;
 import inc.manpower.service.RecruitmentService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -17,7 +15,8 @@ import java.util.List;
 @Service
 public class RecruitmentServiceImpl implements RecruitmentService {
 
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    private final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(RecruitmentServiceImpl.class);
+
     @Autowired
     private HeadHunterRepository headHunterRepository;
     @Autowired
@@ -26,6 +25,7 @@ public class RecruitmentServiceImpl implements RecruitmentService {
     @Override
     public List<HuntersSummary> findHuntersRecruitmentForMonth(Long huntersId) {
         HeadHunter headHunter = headHunterRepository.findById(huntersId).get();
+        logger.info("Loding Recruitments of Head Hunter Id:" + huntersId);
         Assert.notNull(headHunter, "Could not find the HeadHunter for Id: " + huntersId);
         Date thisMonthFirst = new Date();
         thisMonthFirst.setDate(1);

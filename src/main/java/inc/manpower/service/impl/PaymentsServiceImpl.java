@@ -8,8 +8,6 @@ import inc.manpower.repository.EmployeeTypeRepository;
 import inc.manpower.repository.HeadHunterRepository;
 import inc.manpower.repository.RecruitmentOverviewRepository;
 import inc.manpower.service.PaymentsService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -19,7 +17,8 @@ import java.util.List;
 @Service
 public class PaymentsServiceImpl implements PaymentsService {
 
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(PaymentsServiceImpl.class);
+
     @Autowired
     private HeadHunterRepository headHunterRepository;
     @Autowired
@@ -30,7 +29,9 @@ public class PaymentsServiceImpl implements PaymentsService {
     @Override
     public Double calculatePaymentsForHunterForMonth(Long huntersId) {
         HeadHunter headHunter = headHunterRepository.findById(huntersId).get();
+
         Assert.notNull(headHunter, "Could not find the HeadHunter for Id: " + huntersId);
+        logger.debug("Loading the information related to HeadHunter Id: " + huntersId);
 
         List<EmployeeType> types = Lists.newArrayList(employeeTypeRepository.findAll());
         List<RecruitmentOverview> overviews = recruitmentOverviewRepository.findByHunterId(huntersId);
@@ -40,6 +41,8 @@ public class PaymentsServiceImpl implements PaymentsService {
             EmployeeType selectedType = types.stream().filter(type -> type.getId().equals(ov.getTypeId())).findFirst().get();
             payments[0] = payments[0] + selectedType.getAmount() * (ov.getEmployeesCount() + ov.getGroupsCount() * 0.5);
         });
+
+        logger.info("Loaded the information related to HeadHunter Id: " + huntersId);
 
         return payments[0];
     }

@@ -14,8 +14,12 @@ public class HeadHuntersServiceImpl implements HeadHuntersService {
     @Autowired
     private HeadHunterRepository repository;
 
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(HeadHuntersServiceImpl.class);
+
     @Override
-    public Page<HeadHunter> findAllPageable(Pageable pageable) {
+    public Page<HeadHunter> findAllPageable(Pageable pageable)
+    {
+        logger.info("Loading all Head Hunter information");
         return repository.findAll(pageable);
     }
 }
