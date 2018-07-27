@@ -1,3 +1,5 @@
+DROP FUNCTION IF EXISTS get_this_month;
+
 DELIMITER $$
 CREATE FUNCTION get_this_month () 
 RETURNS datetime
@@ -8,6 +10,8 @@ BEGIN
   RETURN monthfirst;
 END$$
 DELIMITER ;
+
+DROP FUNCTION IF EXISTS get_employee_count;
 
 DELIMITER $$
 CREATE FUNCTION get_employee_count (hunter_id bigint, type_id bigint) 

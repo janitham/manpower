@@ -1,0 +1,109 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: manpower-app
+spec:
+  selector:
+    matchLabels:
+      app: manpower-app
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: manpower-app
+    spec:
+      imagePullSecrets:
+      - name: regsecret
+      containers:
+      - image: manpower.inc/manpower-inc:1.0-SNAPSHOT
+        name: manpower-app
+        env:
+        - name: DB_SERVER
+          value: "172.19.11.46"
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_NAME
+          value: manpower-db
+        - name: DB_USER
+          value: testUser
+        - name: DB_PASSWORD
+          value: "1234"
+        - name: APPLICATION_PORT
+          value: "80"
+        - name: USER_NAME
+          value: user
+        - name: USER_PASSWORD
+          value: user
+        - name: ADMIN_NAME
+          value: admin
+        - name: ADMIN_PASSWORD
+          value: admin
+        ports:
+        - containerPort: 80
+          name: manpower-app
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: manpower-grafana
+spec:
+  selector:
+    matchLabels:
+      app: manpower-app
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: manpower-app
+    spec:
+      containers:
+      - image: grafana/grafana
+        name: grafana
+        env:
+        - name: GF_SECURITY_ADMIN_PASSWORD
+          value: "admin"
+        - name: GF_SECURITY_ADMIN_USER
+          value: "admin"
+        - name: GF_USERS_ALLOW_SIGN_UP
+          value: "false"
+        ports:
+        - containerPort: 3000
+          name: grafana
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: manpower-prometheus
+spec:
+  selector:
+    matchLabels:
+      app: manpower-app
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: manpower-app
+    spec:
+      containers:
+      - image: prom/prometheus
+        command: ["--config.file=/etc/prometheus/prometheus.yml"]
+        name: prometheus
+        ports:
+        - containerPort: 9090
+          name: prometheus
+        volumeMounts:
+        - name: prometheus-config-vol
+          mountPath: /etc/prometheus/
+      volumes:
+      - name: prometheus-config-vol
+        configMap:
+          name: prometheus-config
+          items:
+            - key: prometheus.yml
+              path: prometheus.yml

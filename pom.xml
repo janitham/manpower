@@ -3,23 +3,20 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>spring-boot-web-thymeleaf</artifactId>
+	<artifactId>manpower-inc</artifactId>
 	<packaging>jar</packaging>
-	<name>Spring Boot Web Thymeleaf Example</name>
-	<description>Spring Boot Web JSP Example</description>
-	<url>https://www.mkyong.com</url>
-	<version>1.0</version>
+	<version>1.0-SNAPSHOT</version>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.1.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 
 	<scm>
-		<connection>scm:git:file:///C:/Workspaces/keywords-validation/commit-keywords-manager</connection>
-		<developerConnection>scm:git:file:///C:/Workspaces/keywords-validation/commit-keywords-manager</developerConnection>
+		<connection>scm:git:file:///E:\workspaces\99xAssignment\spring-boot-web-thymeleaf</connection>
+		<developerConnection>scm:git:file:///E:\workspaces\99xAssignment\spring-boot-web-thymeleaf</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 
@@ -51,13 +48,6 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- Optional, for bootstrap -->
-		<!--<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>bootstrap</artifactId>
-			<version>3.3.7</version>
-		</dependency>-->
-
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
@@ -65,7 +55,6 @@
 		</dependency>
 
         <!--Hibernate\MySql Dependencies-->
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -139,7 +128,7 @@
 					<imageName>${docker.image.prefix}/${project.artifactId}:${project.version}</imageName>
 					<dockerDirectory>${project.basedir}</dockerDirectory>
 					<serverId>man-docker</serverId>
-					<registryUrl>https://docker.cambio.se/</registryUrl>
+					<registryUrl>https://docker.manpower.se/</registryUrl>
 				</configuration>
 			</plugin>
 			<plugin>

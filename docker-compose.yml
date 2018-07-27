@@ -1,39 +1,38 @@
 version: '3.1'
 services:
-  manpower-inc-db:
-    image: mysql:5.7
+  manpower-inc:
+    image: manpower.inc/manpower-inc:1.0-SNAPSHOT
     restart: always
     ports:
-    - 3306:3306
+    - 8082:8082
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: manpower-inc-db
-      MYSQL_USER: testUser
-      MYSQL_PASSWORD: 1234
+      DB_SERVER: manpower-inc-db
+      DB_PORT: 3306
+      DB_NAME: manpower-inc-db
+      DB_USER: testUser
+      DB_PASSWORD: 1234
+      APPLICATION_PORT: 8082
+      USER_NAME: user
+      USER_PASSWORD: user
+      ADMIN_NAME: admin
+      ADMIN_PASSWORD: admin
+    depends_on:
+        - manpower-inc-db
     networks:
     - manpower-nt
-  
-#  commit-keywords-manager:
-#    image: docker.cambio.se/cambio-infrastructure/commit-keywords-manager:3.0
-#    restart: always
-#    ports:
-#    - 8080:8080
-#    environment:
-#      DB_SERVER: cambio-keywords-db
-#      DB_PORT: 3306
-#      DB_NAME: cambio-keywords-db
-#      DB_USER: testUser
-#      DB_PASSWORD: 1234
-#      APPLICATION_PORT: 8080
-#      USER_NAME: user
-#      USER_PASSWORD: user
-#      ADMIN_NAME: admin
-#      ADMIN_PASSWORD: admin
-#    depends_on:
-#    - cambio-keywords-db
-#    networks:
-#    - keywords-nt
-#
+
+  manpower-inc-db:
+      image: mysql:5.7
+      restart: always
+      ports:
+      - 3306:3306
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: manpower-inc-db
+        MYSQL_USER: testUser
+        MYSQL_PASSWORD: 1234
+      networks:
+      - manpower-nt
     
 networks:
   manpower-nt:
