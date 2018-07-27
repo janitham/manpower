@@ -31,9 +31,9 @@ pipeline {
                 script {
                     println("Building the docker image & Deploy Snapshots...")
                     if (isUnix()) {
-                        sh "export releaseVersion=" + releasedVersion + "-SNAPSHOT && " + "docker-compose up -d"
+                        sh "export releaseVersion=" + releasedVersion + "-SNAPSHOT && " + "docker-compose -f docker-compose-pipeline.yml up -d"
                     } else {
-                        bat "set releaseVersion=" + releasedVersion + "-SNAPSHOT && " + "docker-compose up -d"
+                        bat "set releaseVersion=" + releasedVersion + "-SNAPSHOT && " + "docker-compose -f docker-compose-pipeline.yml up -d"
                     }
                     println("")
                 }
@@ -53,9 +53,9 @@ pipeline {
                             archiveArtifacts 'tests/rest-assured/build/**'
                             dockerCmd 'rm -f snapshot'*/
 
-                            sh "export releaseVersion=" + releasedVersion + "-SNAPSHOT && " + "docker-compose down"
+                            sh "export releaseVersion=" + releasedVersion + "-SNAPSHOT && " + "docker-compose -f docker-compose-pipeline.yml down"
                         } else {
-                            bat "set releaseVersion=" + releasedVersion + "-SNAPSHOT && " + "docker-compose down"
+                            bat "set releaseVersion=" + releasedVersion + "-SNAPSHOT && " + "docker-compose -f docker-compose-pipeline.yml down"
                         }
                     }
                 }
@@ -89,9 +89,9 @@ pipeline {
                 script {
                     println("Deploying the docker image...")
                     if (isUnix()) {
-                        sh "export releaseVersion=" + releasedVersion + " && " + "docker-compose up -d"
+                        sh "export releaseVersion=" + releasedVersion + " && " + "docker-compose -f docker-compose-pipeline.yml up -d"
                     } else {
-                        bat "set releaseVersion=" + releasedVersion + " && " + "docker-compose up -d"
+                        bat "set releaseVersion=" + releasedVersion + " && " + "docker-compose -f docker-compose-pipeline.yml up -d"
                     }
                 }
             }
