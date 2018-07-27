@@ -17,55 +17,61 @@
     <div class="row">
         <h1>Head Hunters</h1>
     </div>
-    <div class="row">
-        <div class="form-group col-md-1">
+    <div class="form-group row">
+        <div class="col-xs-2">
+            <label for="pageSizeSelect">Page Size</label>
             <select class="form-control pagination" id="pageSizeSelect">
                 <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}" th:value="${pageSize}"
                         th:selected="${pageSize} == ${selectedPageSize}"></option>
             </select>
-        <table class="table">
-            <tr>
-                <th>#</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>SSN</th>
-                <th>Link</th>
-            </tr>
-            <tr th:each="hunter : ${hunters}">
-                <td th:text="${hunter.id}"></td>
-                <td th:text="${hunter.firstName}"></td>
-                <td th:text="${hunter.lastName}"></td>
-                <td th:text="${hunter.ssnId}"></td>
-                <td><a th:href="@{'/summary?hunterId='+${hunter.id}}">show</a></td>
-            </tr>
-        </table>
-    </div>
-    <div class="row">
-        <div th:if="${hunters.totalPages != 1}" class="form-group col-md-11 pagination-centered">
-            <ul class="pagination">
-                <li th:class="${hunters.number == 0} ? disabled">
-                    <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
-                </li>
-                <li th:class="${hunters.number == 0} ? disabled">
-                    <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${hunters.number})}">&larr;</a>
-                </li>
-                <li th:class="${hunters.number == (page - 1)} ? 'active pointer-disabled'"
-                    th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
-                    <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${page})}"
-                       th:text="${page}"></a>
-                </li>
-                <li th:class="${hunters.number + 1 == hunters.totalPages} ? disabled">
-                    <a class="pageLink"
-                       th:href="@{/(pageSize=${selectedPageSize}, page=${hunters.number + 2})}">&rarr;</a>
-                </li>
-                <li th:class="${hunters.number + 1 == hunters.totalPages} ? disabled">
-                    <a class="pageLink"
-                       th:href="@{/(pageSize=${selectedPageSize}, page=${hunters.totalPages})}">&raquo;</a>
-                </li>
-            </ul>
         </div>
     </div>
-</div>
+    <div class="row">
+        <div class="form-group col-md-1">
+            <table class="table">
+                <tr>
+                    <th>#</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>SSN</th>
+                    <th>Link</th>
+                </tr>
+                <tr th:each="hunter : ${hunters}">
+                    <td th:text="${hunter.id}"></td>
+                    <td th:text="${hunter.firstName}"></td>
+                    <td th:text="${hunter.lastName}"></td>
+                    <td th:text="${hunter.ssnId}"></td>
+                    <td><a th:href="@{'/summary?hunterId='+${hunter.id}}">show</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+            <div th:if="${hunters.totalPages != 1}" class="form-group col-md-11 pagination-centered">
+                <ul class="pagination">
+                    <li th:class="${hunters.number == 0} ? disabled">
+                        <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
+                    </li>
+                    <li th:class="${hunters.number == 0} ? disabled">
+                        <a class="pageLink"
+                           th:href="@{/(pageSize=${selectedPageSize}, page=${hunters.number})}">&larr;</a>
+                    </li>
+                    <li th:class="${hunters.number == (page - 1)} ? 'active pointer-disabled'"
+                        th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                        <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${page})}"
+                           th:text="${page}"></a>
+                    </li>
+                    <li th:class="${hunters.number + 1 == hunters.totalPages} ? disabled">
+                        <a class="pageLink"
+                           th:href="@{/(pageSize=${selectedPageSize}, page=${hunters.number + 2})}">&rarr;</a>
+                    </li>
+                    <li th:class="${hunters.number + 1 == hunters.totalPages} ? disabled">
+                        <a class="pageLink"
+                           th:href="@{/(pageSize=${selectedPageSize}, page=${hunters.totalPages})}">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
