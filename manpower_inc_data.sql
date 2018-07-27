@@ -1,7 +1,12 @@
 insert into head_hunter(first_name, last_name, ssn_id) 
 values
 ('Hunter1', 'Hunter1', 'hh001'),
-('Hunter2', 'Hunter2', 'hh002');
+('Hunter2', 'Hunter2', 'hh002'),
+('Hunter3', 'Hunter3', 'hh003'),
+('Hunter4', 'Hunter4', 'hh004'),
+('Hunter5', 'Hunter5', 'hh005'),
+('Hunter6', 'Hunter6', 'hh006'),
+('Hunter7', 'Hunter7', 'hh007');
 
 insert into employee_type(name,amount) 
 values

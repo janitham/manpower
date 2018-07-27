@@ -18,6 +18,11 @@
         <h1>Head Hunters</h1>
     </div>
     <div class="row">
+        <div class="form-group col-md-1">
+            <select class="form-control pagination" id="pageSizeSelect">
+                <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}" th:value="${pageSize}"
+                        th:selected="${pageSize} == ${selectedPageSize}"></option>
+            </select>
         <table class="table">
             <tr>
                 <th>#</th>
@@ -34,6 +39,31 @@
                 <td><a th:href="@{'/summary?hunterId='+${hunter.id}}">show</a></td>
             </tr>
         </table>
+    </div>
+    <div class="row">
+        <div th:if="${hunters.totalPages != 1}" class="form-group col-md-11 pagination-centered">
+            <ul class="pagination">
+                <li th:class="${hunters.number == 0} ? disabled">
+                    <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
+                </li>
+                <li th:class="${hunters.number == 0} ? disabled">
+                    <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${hunters.number})}">&larr;</a>
+                </li>
+                <li th:class="${hunters.number == (page - 1)} ? 'active pointer-disabled'"
+                    th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                    <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${page})}"
+                       th:text="${page}"></a>
+                </li>
+                <li th:class="${hunters.number + 1 == hunters.totalPages} ? disabled">
+                    <a class="pageLink"
+                       th:href="@{/(pageSize=${selectedPageSize}, page=${hunters.number + 2})}">&rarr;</a>
+                </li>
+                <li th:class="${hunters.number + 1 == hunters.totalPages} ? disabled">
+                    <a class="pageLink"
+                       th:href="@{/(pageSize=${selectedPageSize}, page=${hunters.totalPages})}">&raquo;</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 </div>
