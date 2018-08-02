@@ -4,7 +4,7 @@
 
     <artifactId>manpower-inc</artifactId>
     <packaging>jar</packaging>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -16,7 +16,7 @@
     <scm>
         <connection>scm:git:file:///E:\workspaces\99xAssignment\spring-boot-web-thymeleaf</connection>
         <developerConnection>scm:git:file:///E:\workspaces\99xAssignment\spring-boot-web-thymeleaf</developerConnection>
-        <tag>HEAD</tag>
+        <tag>manpower-inc-1.1</tag>
     </scm>
 
     <properties>
