@@ -4,7 +4,7 @@
 
     <artifactId>manpower-inc</artifactId>
     <packaging>jar</packaging>
-    <version>1.2-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -30,6 +30,7 @@
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -111,7 +112,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-           <!-- <plugin>
+            <!--<plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <executions>
@@ -122,19 +123,19 @@
                             <goal>build</goal>
                         </goals>
                     </execution>
-                    &lt;!&ndash;<execution>
+                    <execution>
                         <id>push-image</id>
                         <phase>deploy</phase>
                         <goals>
                             <goal>push</goal>
                         </goals>
-                    </execution>&ndash;&gt;
+                    </execution>
                 </executions>
                 <configuration>
                     <imageName>${docker.image.prefix}/${project.artifactId}:${project.version}</imageName>
                     <dockerDirectory>${project.basedir}</dockerDirectory>
-                    &lt;!&ndash;<serverId>man-docker</serverId>
-                    <registryUrl>https://docker.manpower.se/</registryUrl>&ndash;&gt;
+                    <serverId>man-docker</serverId>
+                    <registryUrl>localhost:5000</registryUrl>
                 </configuration>
             </plugin>-->
             <plugin>
@@ -147,6 +148,22 @@
                     <localCheckout>true</localCheckout>
                     <arguments>-Dmaven.javadoc.skip=true</arguments>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <failOnError>false</failOnError>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
