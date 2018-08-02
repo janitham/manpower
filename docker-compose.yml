@@ -1,5 +1,6 @@
-version: '3.1'
+version: '3.5'
 services:
+
   manpower-inc:
     image: manpower.inc/manpower-inc:1.0-SNAPSHOT
     restart: always

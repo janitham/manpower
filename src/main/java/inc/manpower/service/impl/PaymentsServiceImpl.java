@@ -8,6 +8,7 @@ import inc.manpower.repository.EmployeeTypeRepository;
 import inc.manpower.repository.HeadHunterRepository;
 import inc.manpower.repository.RecruitmentOverviewRepository;
 import inc.manpower.service.PaymentsService;
+import inc.manpower.utils.PaymentsUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -39,7 +40,7 @@ public class PaymentsServiceImpl implements PaymentsService {
 
         overviews.forEach(ov -> {
             EmployeeType selectedType = types.stream().filter(type -> type.getId().equals(ov.getTypeId())).findFirst().get();
-            payments[0] = payments[0] + selectedType.getAmount() * (ov.getEmployeesCount() + ov.getGroupsCount() * 0.5);
+            payments[0] = payments[0] + PaymentsUtils.calculateCommission(selectedType.getAmount(), ov.getGroupsCount(), ov.getEmployeesCount());
         });
 
         logger.info("Loaded the information related to HeadHunter Id: " + huntersId);
