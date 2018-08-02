@@ -26,10 +26,10 @@
         <maven.deploy.skip>true</maven.deploy.skip>
         <prometheus.version>0.4.0</prometheus.version>
         <log4j.version>1.2.17</log4j.version>
+        <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -111,7 +111,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <plugin>
+           <!-- <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <executions>
@@ -122,21 +122,21 @@
                             <goal>build</goal>
                         </goals>
                     </execution>
-                    <execution>
+                    &lt;!&ndash;<execution>
                         <id>push-image</id>
                         <phase>deploy</phase>
                         <goals>
                             <goal>push</goal>
                         </goals>
-                    </execution>
+                    </execution>&ndash;&gt;
                 </executions>
                 <configuration>
                     <imageName>${docker.image.prefix}/${project.artifactId}:${project.version}</imageName>
                     <dockerDirectory>${project.basedir}</dockerDirectory>
-                    <serverId>man-docker</serverId>
-                    <registryUrl>https://docker.manpower.se/</registryUrl>
+                    &lt;!&ndash;<serverId>man-docker</serverId>
+                    <registryUrl>https://docker.manpower.se/</registryUrl>&ndash;&gt;
                 </configuration>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
@@ -145,6 +145,7 @@
                     <branchName>manpower</branchName>
                     <pushChanges>false</pushChanges>
                     <localCheckout>true</localCheckout>
+                    <arguments>-Dmaven.javadoc.skip=true</arguments>
                 </configuration>
             </plugin>
         </plugins>
