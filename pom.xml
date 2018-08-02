@@ -14,8 +14,8 @@
     </parent>
 
     <scm>
-        <connection>scm:git:file:///E:\workspaces\99xAssignment\spring-boot-web-thymeleaf</connection>
-        <developerConnection>scm:git:file:///E:\workspaces\99xAssignment\spring-boot-web-thymeleaf</developerConnection>
+        <connection>scm:git:file:///./</connection>
+        <developerConnection>scm:git:file:///./</developerConnection>
         <tag>manpower-inc-1.1</tag>
     </scm>
 
