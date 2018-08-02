@@ -4,7 +4,7 @@
 
     <artifactId>manpower-inc</artifactId>
     <packaging>jar</packaging>
-    <version>1.2-SNAPSHOT</version>
+    <version>1.2</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -16,7 +16,7 @@
     <scm>
         <connection>scm:git:https://github.com/janitham/manpower.git</connection>
         <developerConnection>scm:git:https://github.com/janitham/manpower.git</developerConnection>
-        <tag>manpower-inc-1.1</tag>
+        <tag>manpower-inc-1.2</tag>
     </scm>
 
     <properties>
