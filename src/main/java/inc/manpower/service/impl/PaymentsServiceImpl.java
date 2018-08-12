@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PaymentsServiceImpl implements PaymentsService {
@@ -29,9 +30,9 @@ public class PaymentsServiceImpl implements PaymentsService {
 
     @Override
     public Double calculatePaymentsForHunterForMonth(Long huntersId) {
-        HeadHunter headHunter = headHunterRepository.findById(huntersId).get();
 
-        Assert.notNull(headHunter, "Could not find the HeadHunter for Id: " + huntersId);
+        Optional<HeadHunter> headHunter = headHunterRepository.findById(huntersId);
+        Assert.isTrue(headHunter.isPresent(), "Could not find the HeadHunter for Id: " + huntersId);
         logger.debug("Loading the information related to HeadHunter Id: " + huntersId);
 
         List<EmployeeType> types = Lists.newArrayList(employeeTypeRepository.findAll());

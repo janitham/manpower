@@ -7,7 +7,9 @@ import inc.manpower.repository.EmployeeTypeRepository;
 import inc.manpower.repository.HeadHunterRepository;
 import inc.manpower.repository.RecruitmentOverviewRepository;
 import inc.manpower.service.impl.PaymentsServiceImpl;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,9 @@ public class PaymentsServiceTest {
     @Autowired
     private PaymentsService paymentsService;
 
+    @Rule
+    public ExpectedException expectedEx = ExpectedException.none();
+
     @Test
     public void calculatePaymentsForHunterForMonthTest() {
 
@@ -63,6 +68,18 @@ public class PaymentsServiceTest {
 
         assertThat(valueGot).isEqualTo(3900);
 
+    }
+
+    @Test
+    public void invalidHunterId()
+    {
+        final long huntersId=0l;
+
+        expectedEx.expect(IllegalArgumentException.class);
+        expectedEx.expectMessage("Could not find the HeadHunter for Id: " + huntersId);
+
+        when(headHunterRepository.findById(Mockito.any())).thenReturn(Optional.empty());
+        paymentsService.calculatePaymentsForHunterForMonth(huntersId);
     }
 
     @TestConfiguration

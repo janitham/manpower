@@ -11,6 +11,7 @@ import org.springframework.util.Assert;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RecruitmentServiceImpl implements RecruitmentService {
@@ -24,9 +25,9 @@ public class RecruitmentServiceImpl implements RecruitmentService {
 
     @Override
     public List<HuntersSummary> findHuntersRecruitmentForMonth(Long huntersId) {
-        HeadHunter headHunter = headHunterRepository.findById(huntersId).get();
+        Optional<HeadHunter> headHunter = headHunterRepository.findById(huntersId);
         logger.info("Loding Recruitments of Head Hunter Id:" + huntersId);
-        Assert.notNull(headHunter, "Could not find the HeadHunter for Id: " + huntersId);
+        Assert.isTrue(headHunter.isPresent(), "Could not find the HeadHunter for Id: " + huntersId);
         Date thisMonthFirst = new Date();
         thisMonthFirst.setDate(1);
         return huntersSummaryRepository.findByEmpRecruitedDateBetweenAndHhId(
