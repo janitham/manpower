@@ -1,8 +1,8 @@
-version: '3.5'
+version: '2.0'
 services:
 
   manpower-inc:
-    image: manpower.inc/manpower-inc:1.0-SNAPSHOT
+    image: manpower.inc/manpower-inc:1.4-SNAPSHOT
     restart: always
     ports:
     - 8082:8082
